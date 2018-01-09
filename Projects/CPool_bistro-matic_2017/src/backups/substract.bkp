@@ -1,0 +1,67 @@
+/*
+** EPITECH PROJECT, 2017
+** substract
+** File description:
+** Substraction functions
+*/
+
+#include "../include/my.h"
+#include "../include/utils.h"
+#include "../include/substract.h"
+
+int get_substract_value(char first, char second, int ret, char *char_ret)
+{
+	char temp = (((char)(first - second - ret)));
+	if (temp < 0) {
+		temp += 10;
+		ret = 1;
+	} else {
+		ret = 0;
+		*char_ret = temp;
+	}
+	return (ret);
+}
+
+void substract(char *num1, char *num2, int strlen1,
+	       int strlen2, int ret,  char *result, int offset)
+{
+	char temp;
+	char *res = &result;
+	int it = &offset;
+	if (strlen1 >= 0 && strlen2 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value(num1[strlen1],
+					      num2[strlen2], ret, &temp),
+			  ((strlen1 == 0 && strlen2 == 0 && temp == 0)
+			   ? 1 : 0), &res, &it);
+	} else if (strlen1 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value(num1[strlen1], '0', ret, &temp),
+			  ((strlen1 == 0 && temp == 0) ? 1 : 0), &res, &it);
+	} else if (strlen2 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value('0', num2[strlen2], ret, &temp),
+			  ((strlen2 == 0 && temp == 0) ? 1 : 0), &res, &it);
+	} else
+		return;
+	if (first)
+		return;
+	temp += '0';
+	res[(*it)++] = temp;
+	*result = res;
+	offset = it;
+}
+
+void main ()
+{
+	char *num1 = "38462947";
+	char *num2 = "74847";
+	int len1  = my_strlen(num1);
+	int len2 = my_strlen(num2);
+	int ret;
+	char *result;
+	int offset;
+	my_putstr(substract(num1, num2, len1, len2, ret, result, offset));
+	return(0);
+
+}

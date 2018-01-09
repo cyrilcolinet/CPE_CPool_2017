@@ -1,0 +1,50 @@
+/*
+** EPITECH PROJECT, 2017
+** division
+** File description:
+** Division functions
+*/
+
+#include "../include/my.h"
+#include "../include/utils.h"
+
+int get_substract_value(char first, char second, int ret, char *char_ret)
+{
+	char temp = (((char)(first + second - '0' + ret)));
+	ret = 0;
+	if (temp > '9') {
+		temp -= 10;
+		ret = 1;
+	}
+	*char_ret = temp;
+	return (ret);
+}
+
+int div(char *num1, char *num2, int strlen1,
+	int strlen2, int ret, char *result, int offset)
+{
+	char temp;
+	char *res = &result;
+	int *it = &offset;
+	if (strlen1 >= 0 && strlen2 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value(num1[strlen1],
+					      num2[strlen2], ret, &temp),
+			  ((strlen1 == 0 && strlen2 == 0 && temp == 0)
+			   ? 1 : 0), &res, &it);
+	} else if (strlen1 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value(num1[strlen1], '0', ret, &temp),
+			  ((strlen1 == 0 && temp == 0) ? 1 : 0), &res, &it);
+	} else if (strlen2 >= 0) {
+		substract(num1, num2, --strlen1, --strlen2,
+			  get_substract_value('0', num2[strlen2], ret, &temp),
+			  ((strlen2 == 0 && temp == 0) ? 1 : 0), &res, &it);
+	}
+	if (first)
+		return;
+	temp += '0';
+	res[(*it)++] = temp;
+	*result = res;
+	*offset = it;
+}

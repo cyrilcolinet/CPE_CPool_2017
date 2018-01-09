@@ -1,0 +1,60 @@
+/*
+** EPITECH PROJECT, 2017
+** maths
+** File description:
+** Mathematics function
+*/
+
+#include "../include/math.h"
+#include "../include/summation.h"
+#include "../include/substract.h"
+#include "../include/my.h"
+#include "../include/utils.h"
+
+void check_summation_calc(char *num1, char *num2, char *result, int offset)
+{
+	int strlen1 = my_strlen(num1) - 1;
+	int strlen2 = my_strlen(num2) - 1;
+	char *res = result;
+
+	/*
+	if(num1[0] == '-' && num2[0] == '-') {
+		res[(*it)++] = '-';
+		add(&num1[1], &num2[1], (strlen1 - 1), (strlen2 - 1), 0, &res, &it);
+	} else if(num1[0] == '-') {
+		if((strlen1 - 1) > strlen2 || ((strlen1 - 1) == strlen2 &&
+					       my_strcmp(num1, &num2[1]) < 0)) {
+			res[(*it)++] = '-';
+			substract(&num1[1], num2, (strlen1 - 1), strlen2, 0, 1, &res, &it);
+		} else
+			substract(num2, &num1[1], strlen2, (strlen1 - 1), 0, 1, &res, &it);
+	} else if(num2[0] == '-') {
+		if((strlen2 - 1) > strlen1 || ((strlen2 - 1) == strlen1 &&
+					       my_strcmp(&num2[1], num1) > 0)) {
+			res[(*it)++] = '-';
+			substract(&num2[1], num1, (strlen2 - 1), strlen1, 0, 1, &res, &it);
+		} else
+			substract(num1, &num2[1], strlen1, (strlen2 - 1), 0, 1, &res, &it);
+	} else
+	*/
+	add(num1, num2, strlen1, strlen2, 0, res, offset);
+	my_putstr("passed");
+	*result = &res;
+}
+
+char *summation(char *num1, char *num2)
+{
+	int strlen1 = my_strlen(num1) - 1;
+	int strlen2 = my_strlen(num2) - 1;
+	char *result = my_malloc(sizeof(char *) * (strlen1 + strlen2 + 1));
+	int *offset = 0;
+	check_summation_calc(num1, num2, &result, offset);
+//      result[(*offset)++] = 0;
+//      result[(*offset) + 1] = '\n';
+	return (result);
+}
+
+char *substraction(char *num1, char *num2)
+{
+	return ("");
+}

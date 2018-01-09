@@ -1,0 +1,55 @@
+/*
+** EPITECH PROJECT, 2017
+** summation
+** File description:
+** Summation functions
+*/
+
+#include "../include/my.h"
+#include "../include/utils.h"
+#include "../include/summation.h"
+
+int get_add_value(char first, char second, int ret, char *char_ret)
+{
+	char temp = (((char)(first + second - '0' + ret)));
+	ret = 0;
+	if (temp > '9') {
+		temp -= 10;
+		ret = 1;
+	}
+	*char_ret = temp;
+	return (ret);
+}
+
+int add(char *num1, char *num2, int strlen1,
+	int strlen2, int ret, char *result, int offset)
+{
+	char temp;
+	char *res = my_malloc(sizeof(char *) * (strlen1 + strlen2 + 1));
+	int first = 0;
+	my_put_nbr(offset);
+	my_putchar('\n');
+
+	if (strlen1 >= 0 && strlen2 >= 0) {
+		offset = add(num1, num2, --strlen1, --strlen2,
+			     get_add_value(num1[strlen1], num2[strlen2],
+					   ret, &temp), &res, offset);
+	} else if (strlen1 >= 0) {
+		offset = add(num1, num2, --strlen1, --strlen2,
+			     get_add_value(num1[strlen1], '0', ret, &temp),
+			     &res, offset);
+	} else if (strlen2 >= 0) {
+		offset = add(num1, num2, --strlen1, --strlen2,
+			     get_add_value('0', num2[strlen2], ret, &temp),
+			     &res, offset);
+	} else {
+		if (ret)
+			res[(offset++)] = '1';
+		return;
+	}
+	my_putstr(res);
+	my_putchar('\n');
+	res[(offset++)] = temp;
+	result = my_strcpy(result, res);
+	return (offset);
+}
