@@ -1,0 +1,6 @@
+COMMAND=$(find . -type f \( -name "*~" -o -name "#*#" \) -print)
+
+for FILE in $COMMAND
+do
+  rm $FILE
+done

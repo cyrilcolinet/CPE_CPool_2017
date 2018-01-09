@@ -1,0 +1,1 @@
+cat ../Day02/task05 | tr 'LONEYTUSARFPDHIKZBCGJMQVWX' 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' | tr 'loneytusarfpdhikzbcgjmqvwx' 'abcdefghijklmnopqrstuvwxyz'
