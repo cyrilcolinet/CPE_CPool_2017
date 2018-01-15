@@ -1,5 +1,4 @@
 # Piscine C 2017
-## Description
 Piscine en C pour débuter la première année à Epitech.
 
 >- **Student:** Cyril COLINET
